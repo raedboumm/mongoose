@@ -26,5 +26,14 @@ route.delete("/delete/:id", async(req, res) => {
     res.status(500).json({ msg: err });
   }
 });
+route.put("/put/:id", async(req, res) => {
+  try {
+   const del= await client.findByIdAndUpdate({_id:req.params.id},{...req.body})
+    res.status(201).json({ msg: "updated successfully "});
+  } catch (err) {
+    res.status(500).json({ msg: err });
+  }
+});
+
 
 module.exports = route;
