@@ -9,31 +9,33 @@ route.get("/", async (req, res) => {
   } catch (err) {
     res.status(500).json({ msg: err });
   }
-});
-route.post("/post", async(req, res) => {
+}); // get client list method
+route.post("/post", async (req, res) => {
   try {
-   const clientlsit= await client.create(req.body)
+    const clientlsit = await client.create(req.body);
     res.status(201).json({ msg: "new contact ", newcontact: clientlsit });
   } catch (err) {
     res.status(500).json({ msg: err });
   }
-});
-route.delete("/delete/:id", async(req, res) => {
+}); // post client list method
+route.delete("/delete/:id", async (req, res) => {
   try {
-   const del= await client.findByIdAndDelete({_id:req.params.id})
-    res.status(201).json({ msg: "deleted "});
+    const del = await client.findByIdAndDelete({ _id: req.params.id });
+    res.status(201).json({ msg: "deleted " });
   } catch (err) {
     res.status(500).json({ msg: err });
   }
-});
-route.put("/put/:id", async(req, res) => {
+}); // delete method
+route.put("/put/:id", async (req, res) => {
   try {
-   const del= await client.findByIdAndUpdate({_id:req.params.id},{...req.body})
-    res.status(201).json({ msg: "updated successfully "});
+    const del = await client.findByIdAndUpdate(
+      { _id: req.params.id },
+      { ...req.body }
+    );
+    res.status(201).json({ msg: "updated successfully " });
   } catch (err) {
     res.status(500).json({ msg: err });
   }
-});
-
+}); // update method
 
 module.exports = route;
